@@ -5,7 +5,7 @@ __pycache__/
 .vscode/
 
 #cfg
-default.cfg
+main.cfg
 
 
 *.log

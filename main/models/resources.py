@@ -2,6 +2,10 @@ from marshmallow import fields, Schema
 
 
 # Requests
+class RequestTopN(Schema):
+  top = fields.Int()
+
+
 class RequestBodySchema(Schema):
   id = fields.Int(required=True)
   name = fields.Str(required=True)

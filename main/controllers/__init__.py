@@ -1,7 +1,11 @@
-from flask import Blueprint
+from main.controllers.condition import *
+from main.controllers.drug import *
+from main.controllers.measurement import *
+from main.controllers.procedure import *
 
-skeleton_bp = Blueprint('skeleton', __name__, url_prefix="/api")
-
-API_CATEGORY = 'Skeleton'
-
-from main.controllers.skeleton import *
+bps = [
+    condition_bp,
+    drug_bp,
+    measurement_bp,
+    procedure_bp
+]
