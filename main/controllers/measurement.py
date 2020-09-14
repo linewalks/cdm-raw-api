@@ -9,7 +9,7 @@ from main.models.resources import RequestTopN
 
 
 measurement_bp = Blueprint("measurement", __name__, url_prefix="/api/data/measurement")
-MODEL_TYPE = "measurement"
+MODEL_TYPE = "Measurement"
 
 
 @measurement_bp.route("/person-count", methods=["GET"])

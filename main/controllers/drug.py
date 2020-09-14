@@ -9,7 +9,7 @@ from main.models.resources import RequestTopN
 
 
 drug_bp = Blueprint("drug", __name__, url_prefix="/api/data/drug")
-MODEL_TYPE = "drug"
+MODEL_TYPE = "Drug"
 
 
 @drug_bp.route("/person-count", methods=["GET"])

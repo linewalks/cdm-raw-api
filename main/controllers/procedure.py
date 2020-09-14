@@ -9,7 +9,7 @@ from main.models.resources import RequestTopN
 
 
 procedure_bp = Blueprint("procedure", __name__, url_prefix="/api/data/procedure")
-MODEL_TYPE = "procedure"
+MODEL_TYPE = "Procedure"
 
 
 @procedure_bp.route("/person-count", methods=["GET"])

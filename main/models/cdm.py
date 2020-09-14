@@ -20,6 +20,46 @@ t_concept = db.Table(
 )
 
 
+t_person = db.Table(
+    "person",
+    db.Column("person_id", db.Integer, primary_key=True),
+    db.Column("gender_concept_id", db.Integer, nullable=False),
+    db.Column("year_of_birth", db.Integer, nullable=False),
+    db.Column("month_of_birth", db.Integer, nullable=True),
+    db.Column("day_of_birth", db.Integer, nullable=True),
+    db.Column("race_concept_id", db.Integer, nullable=False),
+    db.Column("ethnicity_concept_id", db.Integer, nullable=False),
+    db.Column("location_id", db.Integer, nullable=True),
+    db.Column("provider_id", db.Integer, nullable=True),
+    db.Column("care_site_id", db.Integer, nullable=True),
+    db.Column("person_source_value", db.String(50), nullable=True),
+    db.Column("gender_source_value", db.String(50), nullable=True),
+    db.Column("gender_source_concept_id", db.Integer, nullable=True),
+    db.Column("race_source_value", db.String(50), nullable=True),
+    db.Column("race_source_concept_id", db.Integer, nullable=True),
+    db.Column("ethnicity_source_value", db.String(50), nullable=True),
+    db.Column("ethnicity_source_concept_id", db.Integer, nullable=True),
+    schema=cdm,
+    extend_existing=True
+)
+
+
+t_visit_occurrence = db.Table(
+    "visit_occurrence",
+    db.Column("visit_occurrence_id", db.Integer, primary_key=True),
+    db.Column("person_id", db.Integer, nullable=False),
+    db.Column("visit_concept_id", db.Integer, nullable=False),
+    db.Column("visit_start_date", db.DateTime, nullable=False),
+    db.Column("visit_end_date", db.DateTime, nullable=False),
+    db.Column("visit_type_concept_id", db.Integer, nullable=False),
+    db.Column("provider_id", db.Integer, nullable=True),
+    db.Column("care_site_id", db.Integer, nullable=True),
+    db.Column("visit_source_value", db.String(50), nullable=True),
+    db.Column("visit_source_concept_id", db.Integer, nullable=True),
+    schema=cdm,
+    extend_existing=True
+)
+
 
 t_condition_occurrence = db.Table(
     "condition_occurrence",
