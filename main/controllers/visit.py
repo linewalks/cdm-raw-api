@@ -21,6 +21,6 @@ def visit_year_count(**kwargs):
                     .group_by(extract("year", t_visit_occurrence.c.visit_start_date))
 
   return {
-    "visit_list": convert_query_to_response(("year", "visit_count"),
-                                             query.all())
+      "visit_list": convert_query_to_response(("year", "visit_count"),
+                                              query.all())
   }
