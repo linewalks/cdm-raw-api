@@ -23,6 +23,6 @@ def person_gender_count(**kwargs):
                     .group_by(t_person.c.gender_concept_id, t_concept.c.concept_name)
 
   return {
-    "person_list": convert_query_to_response(("gender_concept_id", "gender_concept_name", "person_count"),
-                                             query.all())
+      "person_list": convert_query_to_response(("gender_concept_id", "gender_concept_name", "person_count"),
+                                               query.all())
   }

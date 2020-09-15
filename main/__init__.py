@@ -17,7 +17,7 @@ app.config.from_pyfile("main.cfg")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config.update({
     "APISPEC_SPEC": APISpec(
-        title="skeleton",
+        title=app.config["NAME"],
         version="v1",
         openapi_version="2.0.0",
         plugins=[MarshmallowPlugin()],
