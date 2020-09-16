@@ -20,11 +20,19 @@ class UsageCount(Schema):
   usage_count = fields.Int(description="사용 수")
 
 
+class VisitCount(Schema):
+  visit_count = fields.Int(description="방문 수")
+
+
 class ConceptPersonCount(Concept, PersonCount):
   pass
 
 
 class ConceptUsageCount(Concept, UsageCount):
+  pass
+
+
+class ConceptVisitCount(Concept, VisitCount):
   pass
 
 
@@ -42,11 +50,27 @@ def create_concept_person_count_list_schema(root_name):
 
 def create_concept_usage_count_list_schema(root_name):
   schema_name = root_name.split("_")[0].capitalize()
-  schema_name = f"Response{schema_name}Usagecount"
+  schema_name = f"Response{schema_name}UsageCount"
   return create_nested_list_schema(root_name, ConceptUsageCount, schema_name)
+
+
+def create_concept_visit_count_list_schema(root_name):
+  schema_name = root_name.split("_")[0].capitalize()
+  schema_name = f"Response{schema_name}VisitCount"
+  return create_nested_list_schema(root_name, ConceptVisitCount, schema_name)
 
 
 # shortage for export
 ResponseConceptPersonCount = create_concept_person_count_list_schema
 ResponseConceptUsageCount = create_concept_usage_count_list_schema
+ResponseConceptVisitCount = create_concept_visit_count_list_schema
 
+
+# Speficit Responses
+class YearlyVisitCount(VisitCount):
+  year = fields.Int(description="연도")
+
+ResponseYearlyVisitCount = create_nested_list_schema(
+    "visit_list",
+    YearlyVisitCount,
+    "ResponseYearlyVisitCount")
