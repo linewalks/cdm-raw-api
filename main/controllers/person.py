@@ -4,7 +4,7 @@ from sqlalchemy import func
 
 from main import db
 from main.controllers.utils import convert_query_to_response
-from main.models.cdm import t_person, t_concept
+from main.models.cdm import t_concept, t_person, t_death
 from main.models.resources import (
     PersonCount,
     ResponseConceptPersonCount
@@ -36,6 +36,20 @@ person_count: 전체 환자 수
 """)
 def person_count():
   return {"person_count": db.session.query(t_person).count()}
+
+
+@person_bp.route("/death-count", methods=["GET"])
+@doc(tags=[MODEL_TYPE],
+     summary="사망 환자 수",
+     description="사망 기록이 있는 환자 수를 리턴합니다.")
+@marshal_with(PersonCount,
+              description="""
+<pre>
+person_count: 사망 기록이 있는 환자 수
+</pre>
+""")
+def person_death_count():
+  return {"person_count": db.session.query(t_death).count()}
 
 
 @person_bp.route("/gender-count", methods=["GET"])

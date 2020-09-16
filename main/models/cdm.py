@@ -44,6 +44,19 @@ t_person = db.Table(
 )
 
 
+t_death = db.Table(
+    "death",
+    db.Column("person_id", db.Integer, primary_key=True),
+    db.Column("death_date", db.DateTime, nullable=False),
+    db.Column("death_type_concept_id", db.Integer, nullable=False),
+    db.Column("cause_concept_id", db.Integer, nullable=True),
+    db.Column("cause_source_value", db.String(50), nullable=True),
+    db.Column("cause_source_concept_id", db.Integer, nullable=True),
+    schema=cdm,
+    extend_existing=True
+)
+
+
 t_visit_occurrence = db.Table(
     "visit_occurrence",
     db.Column("visit_occurrence_id", db.Integer, primary_key=True),
