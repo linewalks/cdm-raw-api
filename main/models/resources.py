@@ -12,11 +12,6 @@ class Concept(Schema):
   concept_name = fields.Str(description="Concept 이름")
 
 
-class GenderConcept(Schema):
-  gender_concept_id = fields.Int(description="성별 Concept ID")
-  gendeR_concept_name = fields.Str(description="성별 Concept 이름")
-
-
 class PersonCount(Schema):
   person_count = fields.Int(description="환자 수")
 
@@ -30,10 +25,6 @@ class ConceptPersonCount(Concept, PersonCount):
 
 
 class ConceptUsageCount(Concept, UsageCount):
-  pass
-
-
-class GenderConceptPersonCount(GenderConcept, PersonCount):
   pass
 
 
@@ -58,3 +49,4 @@ def create_concept_usage_count_list_schema(root_name):
 # shortage for export
 ResponseConceptPersonCount = create_concept_person_count_list_schema
 ResponseConceptUsageCount = create_concept_usage_count_list_schema
+
