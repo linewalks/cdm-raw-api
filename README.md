@@ -18,6 +18,7 @@ main.default.cfg를 main.cfg로 복사 후, 파일을 직접 수정합니다.
 
 main.cfg의 내용은 다음과 같습니다.
 
+* NAME: API 서버의 이름
 * API_PORT: API가 실행될 포트
 * SQLALCHEMY_DATABASE_URI: 연결할 CDM DB의 SQLAlchemy URI
 * SCHEMA_CDM: CDM 데이터가 속해있는 Schema 이름
