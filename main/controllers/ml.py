@@ -9,7 +9,7 @@ from sklearn.metrics import roc_auc_score, average_precision_score, f1_score
 
 from main import db
 from main.models.cdm import t_person, t_death, t_visit_occurrence
-from main.schema.ml import RequestDeathsSchema
+from main.schema.ml import RequestDeathsSchema, ResponseDeathSchema
 
 
 ml_bp = Blueprint("ml", __name__, url_prefix="/api/ml")
@@ -65,10 +65,29 @@ def _load_demographics(key_df):
 
 @ml_bp.route("/create-death", methods=["POST"])
 @use_kwargs(RequestDeathsSchema)
+@marshal_with(
+    ResponseDeathSchema,
+    description="""
+<pre>
+train_data: 학습 데이터
+  .num_patients: 환자 수
+  .num_visits: 방문 수
+  .label_ratio: 타겟 라벨 비율
+test_data: 검증 데이터
+  .num_patients: 환자 수
+  .num_visits: 방문 수
+  .label_ratio: 타겟 라벨 비율
+evaluate: 모델 예측 성능
+  .auroc: AUROC Score
+  .auprc: AUPRC Score
+  .f1: F1 Score
+</pre>
+"""
+)
 @doc(
     tags=[MODEL_TYPE],
     summary="사망 예측 모델 생성",
-    description="사망 예측 모델을 생성합니다."
+    description="사망 예측 모델을 생성하고 학습시켜 성능을 출력합니다."
 )
 def create_death_model(features, model):
 
